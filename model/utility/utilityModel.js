@@ -1,39 +1,36 @@
-const mysql=require('mysql');
-const connectionParams=require('./../../configuration/prodDatabase.config.js');
+const mysql = require('mysql');
+const connectionParams = require('./../../configuration/prodDatabase.config.js');
 
-var sqlQueryExecution=function(ourQuery,config,values){
+var sqlQueryExecution = function(ourQuery, config, values) {
 
-	// console.log('config:',config);
+    // console.log('config:',config);
 
-	return new Promise (function (resolve, reject){
+    return new Promise(function(resolve, reject) {
 
-		var newConnection= mysql.createConnection(config.parameters);
+        var newConnection = mysql.createConnection(config.parameters);
 
-		newConnection.connect(function(err){
+        newConnection.connect(function(err) {
 
-			if(err) throw (err);
-			// console.log("connected!");
+            if (err) throw (err);
+            
+            newConnection.query(ourQuery, values, function(error, result) {
 
-			newConnection.query(ourQuery,values,function(error,result){
+                if (err)
+                    reject(err);
+                else {
 
-				if(err)
-					reject(err);
-				else{
-					// console.log('Result%:',result);
-					resolve(result);
-				}
-			})
+                    resolve(result);
+                }
+            })
 
-			newConnection.end();
-		})
-	})
+            newConnection.end();
+        })
+    })
 }
 
 
 
 
-module.exports={
-	sqlQueryExecution
+module.exports = {
+    sqlQueryExecution
 }
-
-

@@ -1,10 +1,10 @@
-var mySqlConfig=require('./../configuration/prodDatabase.config.js');
-var makeConnection=require('./utility/utilityModel.js');
+var mySqlConfig = require('./../configuration/prodDatabase.config.js');
+var makeConnection = require('./utility/utilityModel.js');
 
 
-function getRolesByEmail(email){
+function getRolesByEmail(email) {
 
-	var ourQuery=`SELECT C.role 
+    var ourQuery = `SELECT C.role 
 		FROM HawsWA.Users_TB A 
 		LEFT JOIN
 		    HawsWA.Users_Role_TB B
@@ -13,11 +13,11 @@ function getRolesByEmail(email){
 			HawsWA.Roles_TB C
 		    ON B.roleId=C.roleID
 		WHERE A.email='${email}' `;
-	
-	return makeConnection.sqlQueryExecution(ourQuery,mySqlConfig);
+
+    return makeConnection.sqlQueryExecution(ourQuery, mySqlConfig);
 
 }
 
-module.exports={
-	getRolesByEmail
+module.exports = {
+    getRolesByEmail
 }

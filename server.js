@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-const bodyParser=require('body-parser');
+const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3000;
 
@@ -9,8 +9,8 @@ app.use(bodyParser.json());
 
 
 
-app.use(require('./routes/appRoutes'),function(req,res,next){
-	next();
+app.use(require('./routes/appRoutes'), function(req, res, next) {
+    next();
 });
 
 
