@@ -4,7 +4,7 @@ var makeConnection=require('./utility/utilityModel.js');
 
 function getRolesByEmail(email){
 
-	var ourQuery=`SELECT B.userId,C.role, C.roleID 
+	var ourQuery=`SELECT C.role 
 		FROM HawsWA.Users_TB A 
 		LEFT JOIN
 		    HawsWA.Users_Role_TB B
