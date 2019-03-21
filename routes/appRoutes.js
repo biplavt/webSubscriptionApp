@@ -7,6 +7,10 @@ var viewPath = __dirname + '/../public/';
 var webtoken = require('./../security/webtoken.js');
 var webAppController=require('./../controller/webApp.controller');
 
+router.get('/', function(req, res) {
+    res.sendFile(path.resolve(viewPath + 'home.html'));
+})
+
 
 //authentication
 router.use(function(req, res, next) {
@@ -21,9 +25,6 @@ router.use(function(req, res, next) {
     });
 })
 
-router.get('/', function(req, res) {
-    res.sendFile(path.resolve(viewPath + 'home.html'));
-})
 
 router.route('/v1/WA/rolesByEmail/:email').get(webAppController.gRolesByEmail);
 
